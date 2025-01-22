@@ -1,36 +1,29 @@
-class FileManager:
-    def __init__(self, filename):
-        """
-        Constructor que inicializa el objeto con el nombre del archivo
-        y abre el archivo en modo escritura.
-        """
-        self.filename = filename
-        self.file = open(filename, 'w')
-        print(f"Archivo {self.filename} abierto correctamente.")
-
-    def write_data(self, data):
-        """
-        Método para escribir datos en el archivo.
-        """
-        self.file.write(data + '\n')
-        print(f"Datos escritos en {self.filename}.")
+class Persona:
+    def __init__(self, nombre, edad):
+        self.nombre = nombre
+        self.edad = edad
+        print("¡Hola! Soy", self.nombre, "y tengo", self.edad, "años.")
 
     def __del__(self):
-        """
-        Destructor que cierra el archivo cuando el objeto se destruye.
-        """
-        self.file.close()
-        print(f"Archivo {self.filename} cerrado correctamente.")
+        print(self.nombre, "ha sido eliminado.")
 
+# Creando objetos
+persona1 = Persona("Juan", 30)
+persona2 = Persona("Ana", 25)
 
-# Uso de la clase
-if __name__ == "__main__":
-    manager = FileManager("example.txt")
-    manager.write_data("Hola, mundo!")
-    manager.write_data("Python es genial!")
+# El destructor se llama automáticamente cuando el objeto ya no es necesario
+# Por ejemplo, cuando sale del alcance:
+del persona1
 
-    # Eliminamos manualmente el objeto para llamar al destructor
-    del manager
+class Persona:
+    def __init__(self, nombre, edad):
+        self.nombre = nombre
+        self.edad = edad
+        self.saludo = "Hola"  # Atributo adicional
+        print(self.saludo, "Soy", self.nombre, "y tengo", self.edad, "años.")
 
-    # Confirmación de finalización del programa
-    print("Programa finalizado.")
+    def __del__(self):
+        print(self.nombre, "se despide.")
+
+    def presentarse(self):
+        print("Mi nombre es", self.nombre)
